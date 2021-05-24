@@ -1,0 +1,34 @@
+{
+    "files": [
+        {
+            "type": "radioButton",
+            "style": {
+                "component": "class-a"
+            },
+            "position": {
+                "index": 0,
+                "order": 0,
+                "col": 2
+            },
+            "visibilty": "required",
+            "action": [
+                {
+                    "type": "click",
+                    "actionName": ""
+                }
+            ]
+        },
+        {
+            "type": "checkbox",
+            "style": {
+                "component": "class-a"
+            },
+            "position": {
+                "index": 1,
+                "order": 0,
+                "col": 2
+            },
+            "visibilty": "required"
+        }
+    ]
+}

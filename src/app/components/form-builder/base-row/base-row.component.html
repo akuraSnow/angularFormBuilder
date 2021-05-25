@@ -2,6 +2,6 @@
 <ng-container *ngFor="let items of files, let k = index">
 
     <ng-container *ngFor="let item of items" >
-      <app-base-col [file]="item"></app-base-col>
+      <app-base-col [file]="item" [viewModel]="viewModel"></app-base-col>
     </ng-container>
 </ng-container>

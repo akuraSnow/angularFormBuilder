@@ -7,11 +7,28 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 })
 export default class BaseRowComponent implements OnInit {
 
-  @Input() files: any[];
-
+  
   _files: any[];
+  _viewModel: any;
 
-  constructor() { 
+  @Input()
+  set files(item: any) {
+    this._files = item;
+  }
+  get files() {
+    return this._files;
+  }
+
+  @Input() 
+  set viewModel(item: any) {
+    this._viewModel = item;
+  }
+  get viewModel() {
+    return this._viewModel;
+  }
+
+
+  constructor() {
     this._files = this.files;
   }
 

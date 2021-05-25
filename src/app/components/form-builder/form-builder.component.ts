@@ -12,17 +12,26 @@ import BaseRowComponent from './base-row/base-row.component';
 export class FormBuilderComponent implements OnInit {
 
   private _jsonName: string;
+  private _viewModel: string;
 
   @ViewChild("formBuilder", {read: ViewContainerRef, static: true}) formBuilder: ViewContainerRef;
+
+  @Input()
+  set viewModel(name: string) {
+    this._viewModel = name
+  }
+  get viewModel() {
+    return this._viewModel;
+  }
 
   @Input()
   set jsonName(name: string) {
     this._jsonName = name
   }
-
   get jsonName() {
     return this._jsonName;
   }
+
 
   constructor(
     private ls: LocalServiceService,
@@ -39,7 +48,11 @@ export class FormBuilderComponent implements OnInit {
       this.formBuilder.clear();
       let component: any = this.crf.resolveComponentFactory(BaseRowComponent);
       let ceateComponent: any = this.formBuilder.createComponent(component);
+
       ceateComponent.instance.files = this.ls.getService("formBuilder").serialize(files);
+      ceateComponent.instance.viewModel = this.viewModel;
+      console.log("🚀 ~ file: form-builder.component.ts ~ line 48 ~ FormBuilderComponent ~ service.subscribe ~ this.viewModel", this.viewModel)
+
     })
 
 

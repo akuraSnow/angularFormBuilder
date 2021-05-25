@@ -11,10 +11,11 @@
                 "col": 2
             },
             "visibilty": "required",
+            "bindData": "option",
             "action": [
                 {
-                    "type": "click",
-                    "actionName": ""
+                    "type": "change",
+                    "actionName": "changeRadio"
                 }
             ]
         },

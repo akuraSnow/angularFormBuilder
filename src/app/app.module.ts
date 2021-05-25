@@ -5,6 +5,10 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/app.module';
 import { ServiceModule } from './service/service.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PageModule } from './page/page.module';
+import { HomePageComponent } from './page/home-page/home-page.component'
+import { FormBuilderComponent } from './components/form-builder/form-builder.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 
 @NgModule({
   declarations: [
@@ -15,9 +19,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ComponentsModule,
     ServiceModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PageModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  // schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

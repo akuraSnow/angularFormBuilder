@@ -8,7 +8,8 @@ import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewCont
 })
 export default class BaseColComponent implements OnInit {
 
-  @Input() file: any
+  @Input() file: any;
+  @Input() viewModel: any;
   @ViewChild("baseItem", {read: ViewContainerRef, static: true} )baseItem: ViewContainerRef
 
   constructor(
@@ -17,6 +18,9 @@ export default class BaseColComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("🚀 ~ file: base-col.component.ts ~ line 23 ~ BaseColComponent ~ ngOnInit ~ this.file", this.file)
+
+    const { bindData } = this.file;
 
     this.baseItem.clear();
 
@@ -26,7 +30,8 @@ export default class BaseColComponent implements OnInit {
 
     let ceateComponent: any = this.baseItem.createComponent(component);
 
-    ceateComponent.instance.model = this.file;
+    ceateComponent.instance.viewModel = this.viewModel;
+    ceateComponent.instance.config = this.file;
   }
 
 }

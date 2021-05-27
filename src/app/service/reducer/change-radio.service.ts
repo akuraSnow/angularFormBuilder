@@ -5,9 +5,9 @@ export class ChangeRadioService {
 
 constructor() { }
 
-  trigger() {
+  trigger(value) {
 
-    console.log(222)
+    console.log(value)
   }
 
 }

@@ -21,7 +21,14 @@ export class FormBuilderService {
         subscript.complete();
       });
     })
+  }
 
+  AsynchronousLoadingComponent(crf, formBuilder, BaseRowComponent, viewModel) {
+    let component: any = crf.resolveComponentFactory(BaseRowComponent);
+    let ceateComponent: any = formBuilder.createComponent(component);
+    ceateComponent.instance.viewModel = viewModel;
+
+    return ceateComponent;
   }
 
 

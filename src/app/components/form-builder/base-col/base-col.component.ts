@@ -24,13 +24,10 @@ export default class BaseColComponent implements OnInit {
 
     this.baseItem.clear();
 
+    // create new component
     let itemComponent = this.ls.getComponent(this.file.type);
+    let ceateComponent = this.ls.getService("formBuilder").AsynchronousLoadingComponent(this.crf, this.baseItem, itemComponent, this.viewModel);
 
-    let component: any = this.crf.resolveComponentFactory(itemComponent);
-
-    let ceateComponent: any = this.baseItem.createComponent(component);
-
-    ceateComponent.instance.viewModel = this.viewModel;
     ceateComponent.instance.config = this.file;
   }
 

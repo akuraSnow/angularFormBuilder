@@ -1,9 +1,10 @@
-import { Component, ComponentFactoryResolver, ComponentRef, Inject, Injectable, Injector, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { from, Observable } from 'rxjs';
+import { Component, ComponentFactoryResolver, ComponentRef, Inject, Injectable, Injector, Input, OnInit, ViewChild, ViewContainerRef, Type } from '@angular/core';
 import { FormBuilderService } from '@myproject/service/form-builder/form-builder.service';
 
 import { LocalServiceService } from "@myproject/service/local-service/local-service.service";
 import BaseRowComponent from './base-row/base-row.component';
-
+import _ from 'lodash';
 @Component({
   selector: 'app-form-builder',
   templateUrl: './form-builder.component.html',
@@ -43,19 +44,23 @@ export class FormBuilderComponent implements OnInit {
     let service = this.ls.getService("formBuilder").getFilesList(this.jsonName);
 
     service.subscribe((res) => {
-      let { files } = res;
+      let { files, action } = res;
 
       this.formBuilder.clear();
-      let component: any = this.crf.resolveComponentFactory(BaseRowComponent);
-      let ceateComponent: any = this.formBuilder.createComponent(component);
 
-      ceateComponent.instance.files = this.ls.getService("formBuilder").serialize(files);
-      ceateComponent.instance.viewModel = this.viewModel;
-      console.log("🚀 ~ file: form-builder.component.ts ~ line 48 ~ FormBuilderComponent ~ service.subscribe ~ this.viewModel", this.viewModel)
+      let ceateComponent = this.ls.getService("formBuilder").AsynchronousLoadingComponent(this.crf, this.formBuilder, BaseRowComponent, this.viewModel);
+      let serializeFiles = this.ls.getService("formBuilder").serialize(files);
+      
+      ceateComponent.instance.files = serializeFiles;
+
+      this.loadData(serializeFiles);
 
     })
+  }
 
+  loadData(serializeFiles: any[]) {
 
+    
   }
 
 }

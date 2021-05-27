@@ -1,3 +1,4 @@
+import { LocalServiceService } from '@myproject/service/local-service/local-service.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { BaseActionComponent } from '../base-action/base-action.component';
 @Component({
@@ -8,8 +9,8 @@ import { BaseActionComponent } from '../base-action/base-action.component';
 export class RadioButtonComponent extends BaseActionComponent implements OnInit {
 
 
-  constructor() {
-    super()
+  constructor(public ls: LocalServiceService) {
+    super(ls)
   }
 
   ngOnInit(): void {

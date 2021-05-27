@@ -10,6 +10,9 @@
                 "order": 0,
                 "col": 2
             },
+            "getOptionList": [
+                "getRadioList"
+            ],
             "visibilty": "required",
             "bindData": "option",
             "action": [
@@ -21,15 +24,25 @@
         },
         {
             "type": "checkbox",
+            "bindData": "option",
             "style": {
                 "component": "class-a"
             },
+            "getOptionList": [
+                "getRadioList"
+            ],
             "position": {
                 "index": 1,
                 "order": 0,
                 "col": 2
             },
             "visibilty": "required"
+        }
+    ],
+    "action":[
+        {
+            "type": "load",
+            "actionName": "loadData"
         }
     ]
 }

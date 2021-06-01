@@ -53,7 +53,8 @@ export class BaseActionComponent implements OnInit {
   loadValue() {
     let { bindData } = this.config;
     this.value = this.viewModel[bindData];
-    console.log("🚀 ~ file: base-action.component.ts ~ line 56 ~ BaseActionComponent ~ loadValue ~ this.value", this.value)
+    console.log("🚀 ~ file: base-action.component.ts ~ line 56 ~ BaseActionComponent ~ loadValue ~ this.value", this.value);
+    
   }
 
   loadFunction(actionName, value) {
@@ -61,7 +62,7 @@ export class BaseActionComponent implements OnInit {
     map(action, (item) => {
       if (item.type === actionName) {
         let event = this.ls.getService(item.actionName);
-        event.trigger(value);
+        event.invoke(this, value);
       }
     })
   }

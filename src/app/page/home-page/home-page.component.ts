@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomePageComponent implements OnInit {
 
   viewModel={
-    option: "1"
+    option: "1",
+    checkbox: ['2']
   }
 
   constructor() { }

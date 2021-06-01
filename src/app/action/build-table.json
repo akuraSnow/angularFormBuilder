@@ -24,12 +24,12 @@
         },
         {
             "type": "checkbox",
-            "bindData": "option",
+            "bindData": "checkbox",
             "style": {
                 "component": "class-a"
             },
             "getOptionList": [
-                "getRadioList"
+                "getcheckboxList"
             ],
             "position": {
                 "index": 1,

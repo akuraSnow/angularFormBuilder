@@ -3,12 +3,12 @@
 </section> -->
 
 <ion-col *ngFor="let e of optionList">
-    <section>
-      <mat-checkbox [disabled]="disabled"
-                    [checked]="this.model.length && this.model.indexOf(e.id) > -1"
-                    [value]="e[value]"
-                    (change)="setValue(e)">
-        {{ e[display] }} 
-      </mat-checkbox>
-    </section>
-  </ion-col>
+    <mat-checkbox
+      [disabled]="disabled"
+      [checked]="value.includes(e['value'])"
+      [value]="e['value']"
+      (change)="setValue(e)"
+    >
+      {{ e['name'] }}
+    </mat-checkbox>
+</ion-col>

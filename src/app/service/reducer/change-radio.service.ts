@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
+import { BaseActionService } from './baseAction.service';
 
-@Injectable()
-export class ChangeRadioService {
+export class ChangeRadioService extends BaseActionService {
 
-constructor() { }
+  constructor() { 
+    super()
+  }
 
   trigger(value) {
 
-    console.log(value)
+    console.log(this.viewModel)
   }
 
 }

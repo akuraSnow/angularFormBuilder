@@ -17,16 +17,18 @@ export class CheckBoxComponent extends BaseActionComponent  implements OnInit {
   }
 
   setValue(e: any) {
+    console.log('e: ', e);
     
     let vlaue = cloneDeep(this.value);
-    let hasValue = e.value.indexOf(vlaue);
+    let hasValue = vlaue.indexOf(e.value);
     
     if(hasValue > -1) {
       vlaue.splice(hasValue);
     } else {
       vlaue.push(e.value);
-    }
 
+    }
+    console.log('vlaue: ', vlaue);
     this.onchange(vlaue);
   }
 

@@ -48,7 +48,12 @@ export class FormBuilderComponent implements OnInit {
 
       this.formBuilder.clear();
 
-      let ceateComponent = this.ls.getService("formBuilder").AsynchronousLoadingComponent(this.crf, this.formBuilder, BaseRowComponent, this.viewModel);
+      let model = {
+        viewModel: this.viewModel,
+        hash: Math.random().toString().replace('.', '')
+      };
+
+      let ceateComponent = this.ls.getService("formBuilder").AsynchronousLoadingComponent(this.crf, this.formBuilder, BaseRowComponent, model);
       let serializeFiles = this.ls.getService("formBuilder").serialize(files);
       
       ceateComponent.instance.files = serializeFiles;

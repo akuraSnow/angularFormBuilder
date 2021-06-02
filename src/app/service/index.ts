@@ -1,6 +1,8 @@
 import { from } from 'rxjs';
+import { BaseActionService } from './reducer/baseAction.service';
 import { FormBuilderService } from './form-builder/form-builder.service';
 import { LocalServiceService } from './local-service/local-service.service';
+import { BaseDataService } from './reducer/baseData.service';
 
 import { ChangeRadioService } from './reducer/change-radio.service';
 import { LoadDataService } from './action/loadData.service';
@@ -12,10 +14,20 @@ export const allServices = [
     FormBuilderService,
     ChangeRadioService,
     GetRadioListService,
-    GetCheckboxListService
+    GetCheckboxListService,
+    BaseActionService,
+    BaseDataService
 ]
 
 export const serviceList = [
+    {
+        name: 'baseAction',
+        type: BaseActionService
+    },
+    {
+        name: 'baseData',
+        type: BaseDataService
+    },
 
     {
         name: 'formBuilder',

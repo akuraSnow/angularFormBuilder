@@ -10,6 +10,7 @@ export default class BaseColComponent implements OnInit {
 
   @Input() file: any;
   @Input() viewModel: any;
+  @Input() hash: any;
   @ViewChild("baseItem", {read: ViewContainerRef, static: true} )baseItem: ViewContainerRef
 
   constructor(
@@ -18,17 +19,22 @@ export default class BaseColComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("🚀 ~ file: base-col.component.ts ~ line 23 ~ BaseColComponent ~ ngOnInit ~ this.file", this.file)
 
     const { bindData } = this.file;
 
     this.baseItem.clear();
 
+    let model = {
+      viewModel: this.viewModel,
+      hash: this.hash,
+      config: this.file
+    };
+
     // create new component
     let itemComponent = this.ls.getComponent(this.file.type);
-    let ceateComponent = this.ls.getService("formBuilder").AsynchronousLoadingComponent(this.crf, this.baseItem, itemComponent, this.viewModel);
+    let ceateComponent = this.ls.getService("formBuilder").AsynchronousLoadingComponent(this.crf, this.baseItem, itemComponent, model);
 
-    ceateComponent.instance.config = this.file;
+    // ceateComponent.instance.config = this.file;
   }
 
 }

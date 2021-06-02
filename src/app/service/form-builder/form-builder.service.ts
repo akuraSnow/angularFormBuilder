@@ -23,11 +23,17 @@ export class FormBuilderService {
     })
   }
 
-  AsynchronousLoadingComponent(crf, formBuilder, BaseRowComponent, viewModel) {
+  AsynchronousLoadingComponent(crf, formBuilder, BaseRowComponent, model) {
     let component: any = crf.resolveComponentFactory(BaseRowComponent);
     let ceateComponent: any = formBuilder.createComponent(component);
-    ceateComponent.instance.viewModel = viewModel;
 
+    for (const key in model) {
+      if (Object.prototype.hasOwnProperty.call(model, key)) {
+        const element = model[key];
+        ceateComponent.instance[key] = element;
+      }
+    }
+   
     return ceateComponent;
   }
 

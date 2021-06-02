@@ -1,18 +1,42 @@
 import { Injectable } from '@angular/core';
+import { inject } from '@angular/core/testing';
+import { LocalServiceService } from '../local-service/local-service.service';
 
-export abstract class BaseActionService {
+@Injectable()
+export class BaseActionService {
+  _viewModel: any;
+  _hash: any;
 
-  viewModel: any
+  set viewModel(model: any) {
 
-  constructor() { }
+    let viewModel = {
+      ...this._viewModel,
+      ...model
+    };  
+    this._viewModel = viewModel;
+    this.ls.getService('baseData').viewModel = viewModel;
 
-  invoke() {
+  }
+
+  get viewModel() {
+
+    let data = this.ls.getService('baseData').getViewModel(this._hash);
+    return data;
+  }
+
+
+  constructor(protected ls: LocalServiceService) { }
+
+  invoke(self) {
+
+    this._hash = self.hash;
 
     return this.trigger();
 
   }
 
-  abstract trigger(params?: any): void | any;
+  trigger(params?: any): void | any {};
+
 
 
 }

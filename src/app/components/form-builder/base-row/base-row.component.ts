@@ -11,6 +11,8 @@ export default class BaseRowComponent implements OnInit {
   _files: any[];
   _viewModel: any;
 
+  @Input() hash:string;
+
   @Input()
   set files(item: any) {
     this._files = item;

@@ -10,10 +10,11 @@ import { forkJoin } from 'rxjs';
 export class BaseActionComponent implements OnInit {
 
   private _config: any = {};
-  public value: any;
+  public value: any= "";
   public optionList: any[];
 
   @Input() viewModel: any;
+  @Input() hash: string;
 
   @Input()
   set config(obj) {
@@ -38,6 +39,8 @@ export class BaseActionComponent implements OnInit {
 
     this.loadValue();
     this.loadData();
+
+    this.loadDymicData();
   }
 
   loadData() {
@@ -52,13 +55,31 @@ export class BaseActionComponent implements OnInit {
 
   loadValue() {
     let { bindData } = this.config;
+
     this.value = this.viewModel[bindData];
-    console.log("🚀 ~ file: base-action.component.ts ~ line 56 ~ BaseActionComponent ~ loadValue ~ this.value", this.value);
+
     
   }
 
+  loadDymicData() {
+
+    let { bindData } = this.config;
+    this.ls.getService('baseData').getViewModelObj().subscribe((model) => {
+      console.log('model: ', model);
+      console.log('model: ', model[bindData]);
+      this.value = model[bindData];
+      
+    })
+  }
+
   loadFunction(actionName, value) {
-    let { action } = this.config;
+    let { action, bindData } = this.config;
+
+    this.ls.getService('baseData').setViewModel({
+      ...this.viewModel,
+      [bindData]: value,
+    });
+
     map(action, (item) => {
       if (item.type === actionName) {
         let event = this.ls.getService(item.actionName);
@@ -68,7 +89,9 @@ export class BaseActionComponent implements OnInit {
   }
 
   onchange(value) {
-    console.log("🚀 ~ file: base-action.component.ts ~ line 69 ~ BaseActionComponent ~ onchange ~ value", value)
+    
     this.loadFunction('change', value);
   }
+
+
 }

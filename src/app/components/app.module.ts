@@ -7,10 +7,10 @@ import { FormsModule } from '@angular/forms';
 
 import {MatRadioModule} from  '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [...allComponentList],
-  imports: [CommonModule, FormsModule, MatRadioModule, MatCheckboxModule],
+  imports: [CommonModule, FormsModule, MatRadioModule, MatCheckboxModule, MatGridListModule],
   exports: [...allComponentList],
   providers: [
     ...allComponentList,

@@ -19,9 +19,6 @@ export default class BaseColComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    const { bindData } = this.file;
-
     this.baseItem.clear();
 
     let model = {
@@ -32,6 +29,7 @@ export default class BaseColComponent implements OnInit {
 
     // create new component
     let itemComponent = this.ls.getComponent(this.file.type);
+
     let ceateComponent = this.ls.getService("formBuilder").AsynchronousLoadingComponent(this.crf, this.baseItem, itemComponent, model);
 
     // ceateComponent.instance.config = this.file;

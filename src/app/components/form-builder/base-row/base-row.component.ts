@@ -18,7 +18,10 @@ export default class BaseRowComponent implements OnInit {
     this._files = item;
   }
   get files() {
+    console.log('this._files: ', this._files);
     return this._files;
+
+
   }
 
   @Input() 

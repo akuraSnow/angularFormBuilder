@@ -1,8 +1,8 @@
 import { from } from 'rxjs';
-import { BaseActionService } from './reducer/baseAction.service';
+import { BaseActionService } from './reducer/baseAction/baseAction.service';
 import { FormBuilderService } from './form-builder/form-builder.service';
 import { LocalServiceService } from './local-service/local-service.service';
-import { BaseDataService } from './reducer/baseData.service';
+import { BaseDataService } from './reducer/baseData/baseData.service';
 
 import { ChangeRadioService } from './reducer/change-radio.service';
 import { LoadDataService } from './action/loadData.service';

@@ -2,6 +2,11 @@
     "files": [
         {
             "type": "radioButton",
+            "layoutDefinition": {
+                "rows": 1,
+                "cols": 6,
+                "offset": 2
+            },
             "style": {
                 "component": "class-a"
             },
@@ -31,9 +36,35 @@
             "getOptionList": [
                 "getcheckboxList"
             ],
+            "layoutDefinition": {
+                "rows": 1,
+                "cols": 12
+
+            },
+            "position": {
+                "index": 0,
+                "order": 1,
+                "col": 2
+            },
+            "visibilty": "required"
+        },
+        {
+            "type": "checkbox",
+            "bindData": "checkbox",
+            "style": {
+                "component": "class-a"
+            },
+            "getOptionList": [
+                "getcheckboxList"
+            ],
+            "layoutDefinition": {
+                "rows": 1,
+                "cols": 12
+
+            },
             "position": {
                 "index": 1,
-                "order": 0,
+                "order": 1,
                 "col": 2
             },
             "visibilty": "required"

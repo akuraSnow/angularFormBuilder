@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core/testing';
-import { LocalServiceService } from '../local-service/local-service.service';
+import { LocalServiceService } from '../../local-service/local-service.service';
 
 @Injectable()
 export class BaseActionService {
@@ -13,8 +13,10 @@ export class BaseActionService {
       ...this._viewModel,
       ...model
     };  
+
     this._viewModel = viewModel;
-    this.ls.getService('baseData').viewModel = viewModel;
+
+    this.ls.getService('baseData').setViewModel(viewModel, this._hash);
 
   }
 
@@ -27,11 +29,12 @@ export class BaseActionService {
 
   constructor(protected ls: LocalServiceService) { }
 
-  invoke(self) {
+  invoke(self, value) {
 
     this._hash = self.hash;
+    this.viewModel = self.viewModel;
 
-    return this.trigger();
+    return this.trigger(value);
 
   }
 

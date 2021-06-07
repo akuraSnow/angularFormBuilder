@@ -10,7 +10,7 @@ import { forkJoin } from 'rxjs';
 export class BaseActionComponent implements OnInit {
 
   private _config: any = {};
-  public value: any= "";
+  public value: any = "";
   public optionList: any[];
 
   @Input() viewModel: any;
@@ -39,58 +39,65 @@ export class BaseActionComponent implements OnInit {
 
     this.loadValue();
     this.loadData();
-
     this.loadDymicData();
+
   }
 
   loadData() {
     const { getOptionList } = this.config;
 
-    forkJoin(map(getOptionList , (actionName) => {
+    forkJoin(map(getOptionList, (actionName) => {
       return this.ls.getService(actionName).trigger();
     })).subscribe((...data: any) => {
       this.optionList = [].concat.apply([], ...data);
-    })
+    });
   }
 
   loadValue() {
     let { bindData } = this.config;
 
+    this.ls.getService('baseData').setViewModel(this.viewModel, this.hash);
+
     this.value = this.viewModel[bindData];
 
-    
   }
 
   loadDymicData() {
 
     let { bindData } = this.config;
-    this.ls.getService('baseData').getViewModelObj().subscribe((model) => {
-      console.log('model: ', model);
-      console.log('model: ', model[bindData]);
+    this.ls.getService('baseData').getViewModelObj(this.hash).subscribe((model) => {
+
       this.value = model[bindData];
-      
-    })
+
+    });
   }
 
   loadFunction(actionName, value) {
     let { action, bindData } = this.config;
 
-    this.ls.getService('baseData').setViewModel({
-      ...this.viewModel,
+    let cacheViewModel = this.ls.getService('baseData').getViewModel(this.hash);
+
+    let newViewModel = {
+      ...cacheViewModel,
       [bindData]: value,
-    });
+    };
+
+    this.viewModel = newViewModel;
+
+    this.ls.getService('baseData').setViewModel(newViewModel, this.hash);
 
     map(action, (item) => {
       if (item.type === actionName) {
         let event = this.ls.getService(item.actionName);
         event.invoke(this, value);
       }
-    })
+    });
   }
 
   onchange(value) {
-    
+
     this.loadFunction('change', value);
+
   }
 
 
